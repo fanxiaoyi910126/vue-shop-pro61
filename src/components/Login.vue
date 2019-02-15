@@ -34,8 +34,8 @@ export default {
     // loginForm:收集登录表单的全部表单域信息
     return {
       loginForm: {
-        username: '',
-        password: ''
+        username: 'admin',
+        password: '123456'
       },
       // 给登录表单域设置校验规则
       loginFormRules: {
@@ -59,10 +59,12 @@ export default {
         if (valid === true) {
           // 利用axios,把用户信息提交到api进行真实性检验
           const { data: res } = await this.$http.post('login', this.loginForm)
+          // const d = await this.$http.post('login', this.loginForm)
+          // console.log(d)
           if (res.meta.status !== 200) {
             return this.$message.error('用户名或密码不存在')
+            // Vue.prototype.$message = Message,this.$message.error('错了')是element-ui给Message的type注册的方法,不传入type直接调用。
           }
-
           // 通过sessionStorage记录token
           // window.sessionStorage(名称,值)
           window.sessionStorage.setItem('token', res.data.token)
