@@ -3,6 +3,9 @@ import Router from 'vue-router'
 import Login from '@/components/Login'
 import Home from '@/components/Home' // App的子组件
 import Welcome from '@/components/Welcome' // home的子组件
+import User from '@/components/User' // home的子组件
+import Role from '@/components/Role' // home的子组件
+import Right from '@/components/Right' // home的子组件
 
 Vue.use(Router)
 
@@ -13,7 +16,16 @@ var router = new Router({
       path: '/home',
       component: Home,
       redirect: '/welcome',
-      children: [{ path: '/welcome', component: Welcome }]
+      children: [
+        { path: '/welcome', component: Welcome },
+        { path: '/users', component: User },
+        { path: '/roles', component: Role },
+        { path: '/rights', component: Right },
+        { path: '/roles', component: Role },
+        { path: '/roles', component: Role },
+        { path: '/roles', component: Role },
+        { path: '/roles', component: Role }
+      ]
     }
   ]
 })

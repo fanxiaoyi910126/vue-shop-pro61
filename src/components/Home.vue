@@ -17,20 +17,26 @@
           background-color="#333744"
           text-color="#fff"
           active-text-color="#409EFF"
-          :style="menushow?'width:65px;':'width:200px;'"
           :collapse="menushow"
           :collapse-transition="false"
           :unique-opened="true"
+          :router="true"
         >
           <!-- :unique-opened="true"同一时间只显示一个权限项目 -->
-          <el-submenu :index="item.id+''" v-for="(item,k) in menuList" :key="item.id+''">
+          <!-- :router="true"开启vue-router路由功能 -->
+          <el-submenu
+            :index="item.id+''"
+            v-for="(item,k) in menuList"
+            :key="item.id+''"
+            :style="menushow?'width:65px;':'width:200px;'"
+          >
             <template slot="title">
               <i :class="'iconfont icon-'+menuicon[k]"></i>
               <span style="user-select:none;">{{item.authName}}</span>
             </template>
 
             <el-menu-item
-              :index="item.id+'-'+item2.id"
+              :index="item2.path"
               v-for="item2 in item.children"
               :key="item2.id+''"
               style="user-select:none;"
@@ -42,7 +48,7 @@
         </el-menu>
       </el-aside>
       <el-main>
-          <router-view />
+        <router-view/>
       </el-main>
     </el-container>
   </el-container>
